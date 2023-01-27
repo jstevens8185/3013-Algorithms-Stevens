@@ -1,0 +1,10 @@
+Heaps
+-How heaps are sorted
+-Min heaps and max heaps
+-How heaps work in arrays
+
+Binary Trees
+-Self balancing Trees
+
+Search times of different structures
+-Heaps are nlog(n)
