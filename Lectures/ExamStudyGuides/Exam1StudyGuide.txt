@@ -8,3 +8,18 @@ Binary Trees
 
 Search times of different structures
 -Heaps are nlog(n)
+
+
+------------STUDY GUIDE--------------
+***HEAPS HEAPS HEAPS***
+**Balanced Tree (AVL)**
+Binary trees
+Binary Search
+Array and list based trees
+Linked lists vs Array
+Why does a heap work well with an array based trees
+**Difference in min and max heap**
+How to find items in a heap
+Search times of trees and heaps (logn for heap) (logn up to n for binary tree)
+There is 1 more leaf than inner nodes in full and complete trees
+Reasons to use heaps vs reasons to use BST
