@@ -23,3 +23,9 @@ How to find items in a heap
 Search times of trees and heaps (logn for heap) (logn up to n for binary tree)
 There is 1 more leaf than inner nodes in full and complete trees
 Reasons to use heaps vs reasons to use BST
+
+arrays
+Stacks and queues
+Single and Double linked lists
+BST
+AVL Tree
