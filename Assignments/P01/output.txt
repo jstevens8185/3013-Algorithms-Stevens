@@ -1,0 +1,18 @@
+Searching for city 'Wichita Falls' in empList...
+763 comparisons were made
+763 Timmi Licciardi | Email: tlicciardil6@nationalgeographic.com | Address: 803 Morrow Park, Wichita Falls TX, 33.8581, -98.5755
+    Car: Indigo Dodge Avenger | Favorite Movie: Living Daylights, The | Pet: Macaque, bonnet
+    Job Title: Project Manager | Phone: (940) 3840456
+    Stocks: FTR ESTE CTR MKC SNSS NVFY PTIE 
+
+Found in 0.0002916 seconds
+
+Searching for 'Wichita Falls' in tree...
+Looked at 11 nodes
+763 Timmi Licciardi | Email: tlicciardil6@nationalgeographic.com | Address: 803 Morrow Park, Wichita Falls TX, 33.8581, -98.5755
+    Car: Indigo Dodge Avenger | Favorite Movie: Living Daylights, The | Pet: Macaque, bonnet
+    Job Title: Project Manager | Phone: (940) 3840456
+    Stocks: FTR ESTE CTR MKC SNSS NVFY PTIE 
+
+Found in 3.9e-06 seconds
+

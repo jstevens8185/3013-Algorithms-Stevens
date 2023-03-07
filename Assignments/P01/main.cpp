@@ -1,57 +1,130 @@
-/***
- * build a data structure to sort and search employee files.
- * The included data points are as follows:
+/**
+ * Assignment:  P01
+ *       
+ * @file        main.cpp
  * 
- * int id
- * string first_name
- * string last_name
- * string email
- * string address
- * string city
- * string state
- * double latitude
- * double longitude
- * string car
- * string car_model
- * string car_color
- * string pet
- * string job_title
- * string phone_number
- * vector <string> stocks
+ * @author      Jered Stevens | jstevens@altruiststudios.com
  * 
+ * @brief       Opens a json file with person data and 
+ *              inserts data into avl trees for fast searching
+ *          
+ * @version     0.1
+ * @date        2023-03-07
  * 
-***/
-
-
-/***
- * Gameplan:
- * 
- * Build an Employee. Employee will hold a value for each data point
- * Build employee array and load all employees in from data file.
- * Build binary tree node. Each node will hold an employee pointer for each data point
- *  ie. a node will hold employee* ID, employee* first_name, ect.
- * Build BST. Node 0 points to Employee array 0.
- *  ie. Node0->ID = EmployeeArray[0], Node0->first_name = EmployeeArray[0]
- *      Node1->ID = EmployeeArray[1], Node1->first_name = EmployeeArray[1], ect.
- * To sort, compare Node0->ID to Node1->ID. Switch pointers if neccessary. 
- *      Continue to sort all Node->ID until they are all in order.
- * Next, compare Node[0]->first_name to Node[1]->first_name. Switch pointers if neccessary.
- *      Sort all Node->first_name until they are all in order.
- * Repeat with every data value.
- * 
- * After sorting is complete you should be left with a single binary search tree that has all
- *      data values in a sorted order.
- * Node[0]->ID may point to EmployeeArray[5] while Node[0]->first_name may point to EmployeeArray[526].
- * 
-***/
+ **/
 
 #include "json.hpp"
+#include <fstream>
 #include <iostream>
+#include <string>
+#include <vector>
+#include <array>
+#include "TreeManager.hpp"
+#include "timer.hpp"
+
 
 using json = nlohmann::json;
 
+
+void openFiles(std::ifstream& infile, std::ofstream& outfile);
+
 int main()
 {
-    int i = 1;
-    std::cout << i;
+    TreeManager treeManager;
+    Timer t;
+    double s;
+    long m;
+    std::ifstream in;
+    std::ofstream out;
+    openFiles(in, out);
+    json Person = json::parse(in);
+    const int PersonSize = Person.size();
+
+
+    // Create array to hold all people
+    c_Employee empList[PersonSize];
+
+
+    for (int i = 0; i < PersonSize; i++)
+    {
+        // Create new c_Employee pointer for each person
+        c_Employee *temp = new c_Employee(Person[i]["id"], Person[i]["first_name"],
+                                          Person[i]["last_name"], Person[i]["email"], Person[i]["address"],
+                                          Person[i]["city"], Person[i]["state"], Person[i]["latitude"],
+                                          Person[i]["longitude"], Person[i]["car"], Person[i]["car_model"],
+                                          Person[i]["car_color"], Person[i]["favorite_movie"],
+                                          Person[i]["pet"], Person[i]["job_title"], Person[i]["phone_number"]);
+
+        // Populate each persons stock portfolio
+        for (std::string j : Person[i]["stocks"])
+        {
+            temp->pushStock(j);
+        }
+
+        // Push the person insto the array
+        empList[i] = *temp;
+    }
+
+    // Give address of every person to the treeManager to insert into AVL trees 
+    for (int i = 0; i < PersonSize; i++)
+    {
+        treeManager.insert(&empList[i]);
+    }
+
+
+    out << "Searching for city 'Wichita Falls' in empList...\n";
+    t.Start();
+    for(int i = 0; i < PersonSize; i++)
+    {
+        if (empList[i].getCity() == "Wichita Falls"){
+            out << i+1 << " comparisons were made\n";
+            out << *empList[i].getEmployee() << std::endl;
+            
+            break;
+        }
+        
+    }
+    t.End();
+    s = t.Seconds();
+    out << "Found in " << s << " seconds\n\n";
+
+    out << "Searching for 'Wichita Falls' in tree...\n";
+    c_Employee *temp;
+    t.Start();
+    temp = treeManager.searchByCity("Wichita Falls", out);
+    t.End();
+    s = t.Seconds();
+
+    out << *temp << std::endl;
+    out << "Found in " << s << " seconds\n\n";
 }
+
+
+/****************************************************************
+ *          Open Files Function
+ *  Name:   openFiles(ifstream&, ofStream&)
+ * 
+ *  Args:   ifstream& infile, ofstream& outfile
+ * 
+ *  Rtrn:   void
+ * 
+ *  Func:   Opens input and output files of users choice
+ * 
+ *  Logic:  Declare char arrays to hold user specified
+ *          input and output file names. Get names from user.
+ *          Open files
+ ****************************************************************/
+
+void openFiles(std::ifstream& infile, std::ofstream& outfile)
+{
+    char inFileName[40];
+    char outFileName[40];
+    std::cout << "Enter the input file name: ";
+    std::cin >> inFileName;
+    infile.open(inFileName); //open input file
+    //infile.open("program1_input2.txt");
+    std::cout << "Enter the output file name: ";
+    std::cin >> outFileName;
+    outfile.open(outFileName);//open out putfile
+    //outfile.open("out.txt");
+};
