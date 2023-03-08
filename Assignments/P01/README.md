@@ -12,6 +12,7 @@ time to show the difference in speed.
 
 ### Files
 | # | Name | Description |
+|---|------|-------------|
 | 0 | [main.cpp](./main.cpp) | Main driver of program |
 | 1 | [json.hpp](./json.hpp) | Allows json file to be used |
 | 2 | [Employee.hpp](./Employee.hpp) | Provides structure of employees to be stored in database |
