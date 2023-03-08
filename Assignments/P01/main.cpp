@@ -71,7 +71,7 @@ int main()
         treeManager.insert(&empList[i]);
     }
 
-
+    // Perform linear search for city "Wichita Falls"
     out << "Searching for city 'Wichita Falls' in empList...\n";
     t.Start();
     for(int i = 0; i < PersonSize; i++)
@@ -88,6 +88,7 @@ int main()
     s = t.Seconds();
     out << "Found in " << s << " seconds\n\n";
 
+    // Perform search for city "Wichita Falls in the database"
     out << "Searching for 'Wichita Falls' in tree...\n";
     c_Employee *temp;
     t.Start();
