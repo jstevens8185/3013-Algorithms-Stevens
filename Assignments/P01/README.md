@@ -26,6 +26,7 @@ time to show the difference in speed.
 ### Instructions
 
 **This program will not run unless [json.hpp](./json.hpp) is included.**
+
 When ran, you will be prompted to enter your input file name (which must be a .json file),
 and an output file name.
 By default the program searches for the city "Wichita Falls" in linear fashion and outputs the
