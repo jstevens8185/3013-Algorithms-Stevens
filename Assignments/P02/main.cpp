@@ -107,13 +107,13 @@ std::vector<std::string> FindWords(wordList array, std::string substring) {
     std::vector<std::string> matches; // to hold any matches
     size_t found;           // size_t is an integer position of
                             // found item. -1 if its not found.
-
+    std::string word;
     wordNode* current = array.getHead();
 
     while (current != nullptr) { // loop through array
-        found = current->word.find(substring);    // check for substr match
-        if (found != std::string::npos) {              // if found >= 0 (its found then)
-            matches.push_back(current->word);     // add to matches
+        word = current->word;    // check for substr match
+    if (word.substr(0, substring.length()) == substring) { // check for substring match at beginning of word
+            matches.push_back(word);  // add to matches
         }
         current = current->next;
     }
@@ -185,13 +185,13 @@ int main()
         if ((int)k != 32)
         { // if k is not a space print it
             T.End();
-            std::cout << T.NanoSeconds() << " nano" << std::endl;
+            std::cout << T.MilliSeconds() << " Milli" << std::endl;
             std::cout << "Keypressed: " << termcolor::blue << k << " = " << (int)k << termcolor::reset << std::endl;
             std::cout << "Current Substr: " << termcolor::red << word << termcolor::reset << std::endl;
-            std::cout << "Animals Found: ";
+            std::cout << "Words Found: ";
             std::cout << termcolor::green;
             // This prints out all found matches
-            for (int i = 0; i < matches.size(); i++)
+            for (int i = 0; i < 10; i++)
             {
                 // find the substring in the word
                 loc = matches[i].find(word);
