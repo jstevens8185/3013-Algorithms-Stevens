@@ -2,3 +2,6 @@
 Lectures/*
 Lectures/ExamStudyGuides/Exam1StudyGuide.txt
 *main.exe
+.DS_Store
+.vscode/settings.json
+.vscode/tasks.json
